@@ -1,6 +1,7 @@
 /* Add your Application JavaScript */
 const apiKey = "redacted: get your key from https://newsapi.org/";
 
+
 Vue.component('app-header', {
     template: `
         <header>
@@ -74,7 +75,10 @@ const NewsList = Vue.component('news-list', {
                 <a :href='article.url' target="_blank">
                 <div class="card-body">
                   <h5 class="card-text ">{{ article.title }}</h5>
-                  <img :src='article.urlToImg'/>
+
+                  <img class="card-img" v-if="article.urlToImg != null" :src='article.urlToImg'/>
+                  <img class="card-img" v-else src='https://cdn1.iconfinder.com/data/icons/office-1/128/4-512.png'/>                  
+                  
                   <p class="card-text">{{ article.description }}</p>
                 </div>
                 </a>
@@ -94,6 +98,8 @@ const NewsList = Vue.component('news-list', {
     .then(data => {
       console.log(data);
       self.articles = data.articles;
+      // test idea - successful: v-if will work
+      // self.articles[0].urlToImg = "https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg";
     });
   },
   data: function() {

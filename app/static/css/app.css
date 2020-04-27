@@ -7,7 +7,7 @@ footer  {
 }
 
 .news__item {
-    height: 22rem;
+    height: 30rem;
     border-top: 0.5rem solid rgb(61, 230, 159);
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 9px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 2.0rem !important;   
@@ -20,4 +20,11 @@ footer  {
 .news__item > a {
     color: inherit;
     text-decoration: inherit;
+}
+
+.news__item .card-img {
+    height: 13.023rem;
+    max-width: 70%;
+    max-height: 13.023rem;
+    margin: 1rem 0;
 }
