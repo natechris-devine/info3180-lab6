@@ -1,5 +1,5 @@
 /* Add your Application JavaScript */
-const apiKey = "9ac3a6d6161b4201b9536bb60be82d8e";
+const apiKey = "redacted: get your key from https://newsapi.org/";
 
 Vue.component('app-header', {
     template: `
