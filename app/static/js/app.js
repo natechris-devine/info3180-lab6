@@ -47,14 +47,30 @@ Vue.component('news-list', {
   template: `
       <div class="news">
           <h2>News</h2>
-          <ul class="news__list">
-              <li v-for="article in articles" class="news__item">{{ article.title }}</li>
-          </ul>
+          <div class="form-inline d-flex justify-content-center">
+            <div class="form-group mx-sm-3 mb-2">
+              <label class="sr-only" for="search">Search</label>
+              <input type="search" name="search" v-model="searchTerm"
+                  id="search" class="form-control mb-2 mr-sm-2" placeholder="Enter search term here" />
+                  <button class="btn btn-primary mb-2" @click="searchNews">Search</button>
+            </div>
+          </div>
+          <div class="news__list card-columns">              
+              <div v-for="article in articles" class="news__item card overflow-auto">
+                <a :href='article.url' target="_blank">
+                <div class="card-body">
+                  <h5 class="card-text ">{{ article.title }}</h5>
+                  <img :src='article.urlToImg'/>
+                  <p class="card-text">{{ article.description }}</p>
+                </div>
+                </a>
+              </div>
+          </div>
       </div>
   `,
-  created: () => {
+  created: function() {
     let self = this;
-    
+
     fetch('http://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     'apiKey=' + apiKey)
@@ -68,7 +84,23 @@ Vue.component('news-list', {
   },
   data: function() {
     return {
-      articles: []
+      articles: [], 
+      searchTerm: ''
+    };
+  },
+  methods: {
+    searchNews: function() {
+      let self = this;
+      fetch('https://newsapi.org/v2/everything?' +
+      'q=' + self.searchTerm + 
+      '&language=en&apiKey=' + apiKey)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        self.articles = data.articles;
+      });
     }
   }
 });

@@ -5,3 +5,19 @@ body {
 footer  {
     padding-top: 20px;
 }
+
+.news__item {
+    height: 22rem;
+    border-top: 0.5rem solid rgb(61, 230, 159);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 9px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 2.0rem !important;   
+}
+
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.news__item > a {
+    color: inherit;
+    text-decoration: inherit;
+}
